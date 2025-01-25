@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -26,6 +27,7 @@ public class User {
 
     @NotBlank
     @Size(min = 8, message = "Password must contains at least 8 characters.")
+    @ToString.Exclude
     private String password;
 
     @CreationTimestamp
