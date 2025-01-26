@@ -38,10 +38,14 @@ public class UserServiceImpl implements UserService {
         logger.info("createUser :: create user with user email: {}", user.getEmail());
         return Mono.fromCallable(() -> findByEmail(user.getEmail())
                 .orElse(null))
-                .flatMap(existingUser -> ApiResponseUtil.errorResponse("User already present with given email id."))
+                .flatMap(existingUser -> {
+                    logger.info("createUser :: user already present in db table with given email: {}", user.getEmail());
+                    return ApiResponseUtil.errorResponse("User already present with given email id.");
+                })
                 .switchIfEmpty(Mono.defer(() -> {
                     user.setPassword(passwordEncoder.encode(user.getPassword()));
                     save(user);
+                    logger.info("createUser :: user created successfully for email: {}", user.getEmail());
                     return ApiResponseUtil.successResponse("User created successfully!");
                 }));
     }
