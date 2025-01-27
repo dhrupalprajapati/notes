@@ -1,0 +1,45 @@
+Create User
+
+curl --location 'http://localhost:8080/api/users' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email": "dhrupal.prajapati@gmail.com",
+    "password": "123456789"
+}'
+
+Create Note
+
+curl --location 'http://localhost:8080/api/notes' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic ZGhydXBhbC5wcmFqYXBhdGlAZ21haWwuY29tOjEyMzQ1Njc4OQ==' \
+--data '{
+    "title": "Create CRUD For notes application",
+    "note": "Implement basic auth, crud for notes, provide basic validations."
+}'
+
+Update Note
+
+curl --location --request PUT 'http://localhost:8080/api/notes/1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic ZGhydXBhbC5wcmFqYXBhdGlAZ21haWwuY29tOjEyMzQ1Njc4OQ==' \
+--data '{
+    "title": "Create CRUD For notes application",
+    "note": "Implement basic auth, crud for notes, provide basic validations, create one user by default."
+}'
+
+Get Note
+
+curl --location 'http://localhost:8080/api/notes/1' \
+--header 'Authorization: Basic ZGhydXBhbC5wcmFqYXBhdGlAZ21haWwuY29tOjEyMzQ1Njc4OQ=='
+
+Get All Notes By User
+
+curl --location 'http://localhost:8080/api/notes' \
+--header 'Authorization: Basic ZGhydXBhbC5wcmFqYXBhdGlAZ21haWwuY29tOjEyMzQ1Njc4OQ==' \
+--header 'Cookie: JSESSIONID=A5B9BB22DAC02AC7DC355A5ABCE2F6C5; JSESSIONID=A5B9BB22DAC02AC7DC355A5ABCE2F6C5'
+
+Delete Note
+
+curl --location --request DELETE 'http://localhost:8080/api/notes/1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic ZGhydXBhbC5wcmFqYXBhdGlAZ21haWwuY29tOjEyMzQ1Njc4OQ=='
